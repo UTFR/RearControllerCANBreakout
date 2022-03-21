@@ -1,0 +1,425 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2022-01-20</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12:02:18 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc" class="file"><acronym title="C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc">C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">28</td></tr>
+</table>
+</td>
+</table><a name="IDQMU2IPMBYOLFLOQ1LHC0K3Y25LOISN2YPX3R1MJH3Z5BHJRUOYGF"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2JG5RGJYTS5TI5YO1CNAKLDDQK05JNWKFBGVUXO1L2UMCSCQVOXJ">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLHCGVH24YMLOJDB5NAZKUUOWZE2ROL0T51NQ2FF5JZN2E1H4JVEM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0TMOX24OLHZ2NJTWJCHTEHIB2ORHWYXG34QU4YCFMOZPJEIE0R2E">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID04R2GK0CLC1NH3UHEXGKIFNEIFDUJDNOGHUKF4DJTCI3DCO4BGCK">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5A0LE5O03T51DXHB1MYAQB4CMGOT5LZ4HK0SF4BW3DXXC2XLY3VL">Width Constraint (Min=10mil) (Max=10mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLOIQ0RLUFXF4KZQL22EHXY0A4MTIIDAB15L3PFGBNM1NOEIPER0K">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMIU5G04W1H0UIKT4JDFT03OUENZAE0YCOQFZJIJOPQD4XGHWMDKP">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUMTSMRQP2J3WESIJIEDT5HF3UNX1QHMR0WEGOWJFORBIQMNDFQE">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMJWTJW1W0MKSISJJPGKKISFKFPC3P05NFQKTW4CWBZINN3RIH0NC">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDV3Q2YSVN0ZL4BKOFRGKWQHOZ3DDTW315JOD4VMGWBUWTX5JA5Z0L">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">22</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDN1AP50G45DRJEMDFROMDK4B4NLUCBKJMJKP5H2GTIHA0P4PJNHVM">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJ1TC3B3AWPB5KONGZDI1DT5FNNZHPJHA5TV51JPSNYFHTL30FPL">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIHAELJOKEUJDEW1UDR01D5SDLGJRJU1FIYFFO0EWKXABYFYGSA4L">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">28</td>
+</tr>
+</table><br><a name="IDMJWTJW1W0MKSISJJPGKKISFKFPC3P05NFQKTW4CWBZINN3RIH0NC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2276.375mil|Location2.X=2287.625mil|Location1.Y=3989.733mil|Location2.Y=4000.983mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2276.375mil|Location2.X=2287.625mil|Location1.Y=3989.733mil|Location2.Y=4000.983mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.284mil &lt; 10mil) Between Pad R4-1(2264.528mil,3970mil) on Top Layer And Via (2282mil,4015mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [7.284mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDV3Q2YSVN0ZL4BKOFRGKWQHOZ3DDTW315JOD4VMGWBUWTX5JA5Z0L"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1940.519mil|Location2.X=1951.769mil|Location1.Y=4774.375mil|Location2.Y=4785.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1940.519mil|Location2.X=1951.769mil|Location1.Y=4774.375mil|Location2.Y=4785.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.842mil &lt; 10mil) Between Arc (1960.908mil,4780mil) on Top Overlay And Pad U2-1(1906.241mil,4780mil) on Top Layer [Top Overlay] to [Top Solder] clearance [9.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1490.595mil|Location2.X=1501.845mil|Location1.Y=4645.596mil|Location2.Y=4656.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1490.595mil|Location2.X=1501.845mil|Location1.Y=4645.596mil|Location2.Y=4656.846mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R1-1(1510mil,4635.472mil) on Top Layer And Track (1496.22mil,4657.126mil)(1496.22mil,4672.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.155mil|Location2.X=1529.405mil|Location1.Y=4645.596mil|Location2.Y=4656.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.155mil|Location2.X=1529.405mil|Location1.Y=4645.596mil|Location2.Y=4656.846mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R1-1(1510mil,4635.472mil) on Top Layer And Track (1523.78mil,4657.126mil)(1523.78mil,4672.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1490.595mil|Location2.X=1501.845mil|Location1.Y=4673.155mil|Location2.Y=4684.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1490.595mil|Location2.X=1501.845mil|Location1.Y=4673.155mil|Location2.Y=4684.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R1-2(1510mil,4694.528mil) on Top Layer And Track (1496.22mil,4657.126mil)(1496.22mil,4672.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.155mil|Location2.X=1529.405mil|Location1.Y=4673.155mil|Location2.Y=4684.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1518.155mil|Location2.X=1529.405mil|Location1.Y=4673.155mil|Location2.Y=4684.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R1-2(1510mil,4694.528mil) on Top Layer And Track (1523.78mil,4657.126mil)(1523.78mil,4672.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2140.595mil|Location2.X=2151.845mil|Location1.Y=4620.596mil|Location2.Y=4631.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2140.595mil|Location2.X=2151.845mil|Location1.Y=4620.596mil|Location2.Y=4631.846mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R2-1(2160mil,4610.472mil) on Top Layer And Track (2146.22mil,4632.126mil)(2146.22mil,4647.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2168.155mil|Location2.X=2179.405mil|Location1.Y=4620.596mil|Location2.Y=4631.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2168.155mil|Location2.X=2179.405mil|Location1.Y=4620.596mil|Location2.Y=4631.846mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R2-1(2160mil,4610.472mil) on Top Layer And Track (2173.78mil,4632.126mil)(2173.78mil,4647.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2140.595mil|Location2.X=2151.845mil|Location1.Y=4648.155mil|Location2.Y=4659.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2140.595mil|Location2.X=2151.845mil|Location1.Y=4648.155mil|Location2.Y=4659.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R2-2(2160mil,4669.528mil) on Top Layer And Track (2146.22mil,4632.126mil)(2146.22mil,4647.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2168.155mil|Location2.X=2179.405mil|Location1.Y=4648.155mil|Location2.Y=4659.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2168.155mil|Location2.X=2179.405mil|Location1.Y=4648.155mil|Location2.Y=4659.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R2-2(2160mil,4669.528mil) on Top Layer And Track (2173.78mil,4632.126mil)(2173.78mil,4647.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1231.068mil|Location2.X=1242.318mil|Location1.Y=4830.595mil|Location2.Y=4841.845mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1231.068mil|Location2.X=1242.318mil|Location1.Y=4830.595mil|Location2.Y=4841.845mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R3-1(1220.945mil,4850mil) on Top Layer And Track (1242.598mil,4836.22mil)(1258.347mil,4836.22mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1231.068mil|Location2.X=1242.318mil|Location1.Y=4858.154mil|Location2.Y=4869.404mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1231.068mil|Location2.X=1242.318mil|Location1.Y=4858.154mil|Location2.Y=4869.404mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R3-1(1220.945mil,4850mil) on Top Layer And Track (1242.598mil,4863.779mil)(1258.347mil,4863.779mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1258.627mil|Location2.X=1269.877mil|Location1.Y=4830.595mil|Location2.Y=4841.845mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1258.627mil|Location2.X=1269.877mil|Location1.Y=4830.595mil|Location2.Y=4841.845mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R3-2(1280mil,4850mil) on Top Layer And Track (1242.598mil,4836.22mil)(1258.347mil,4836.22mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1258.627mil|Location2.X=1269.877mil|Location1.Y=4858.154mil|Location2.Y=4869.404mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1258.627mil|Location2.X=1269.877mil|Location1.Y=4858.154mil|Location2.Y=4869.404mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R3-2(1280mil,4850mil) on Top Layer And Track (1242.598mil,4863.779mil)(1258.347mil,4863.779mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2243.155mil|Location2.X=2254.405mil|Location1.Y=3950.595mil|Location2.Y=3961.845mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2243.155mil|Location2.X=2254.405mil|Location1.Y=3950.595mil|Location2.Y=3961.845mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R4-1(2264.528mil,3970mil) on Top Layer And Track (2227.126mil,3956.22mil)(2242.874mil,3956.22mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2243.155mil|Location2.X=2254.405mil|Location1.Y=3978.155mil|Location2.Y=3989.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2243.155mil|Location2.X=2254.405mil|Location1.Y=3978.155mil|Location2.Y=3989.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R4-1(2264.528mil,3970mil) on Top Layer And Track (2227.126mil,3983.78mil)(2242.874mil,3983.78mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2183.383mil|Location2.X=2194.633mil|Location1.Y=3954.375mil|Location2.Y=3965.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2183.383mil|Location2.X=2194.633mil|Location1.Y=3954.375mil|Location2.Y=3965.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.37mil &lt; 10mil) Between Pad R4-2(2205.472mil,3970mil) on Top Layer And Text "R4" (2116.677mil,3940.006mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.37mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2215.595mil|Location2.X=2226.845mil|Location1.Y=3950.595mil|Location2.Y=3961.845mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2215.595mil|Location2.X=2226.845mil|Location1.Y=3950.595mil|Location2.Y=3961.845mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R4-2(2205.472mil,3970mil) on Top Layer And Track (2227.126mil,3956.22mil)(2242.874mil,3956.22mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2215.595mil|Location2.X=2226.845mil|Location1.Y=3978.155mil|Location2.Y=3989.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2215.595mil|Location2.X=2226.845mil|Location1.Y=3978.155mil|Location2.Y=3989.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R4-2(2205.472mil,3970mil) on Top Layer And Track (2227.126mil,3983.78mil)(2242.874mil,3983.78mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2125.595mil|Location2.X=2136.845mil|Location1.Y=4485.596mil|Location2.Y=4496.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2125.595mil|Location2.X=2136.845mil|Location1.Y=4485.596mil|Location2.Y=4496.846mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R5-1(2145mil,4475.472mil) on Top Layer And Track (2131.22mil,4497.126mil)(2131.22mil,4512.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2153.155mil|Location2.X=2164.405mil|Location1.Y=4485.596mil|Location2.Y=4496.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2153.155mil|Location2.X=2164.405mil|Location1.Y=4485.596mil|Location2.Y=4496.846mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R5-1(2145mil,4475.472mil) on Top Layer And Track (2158.78mil,4497.126mil)(2158.78mil,4512.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2125.595mil|Location2.X=2136.845mil|Location1.Y=4513.155mil|Location2.Y=4524.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2125.595mil|Location2.X=2136.845mil|Location1.Y=4513.155mil|Location2.Y=4524.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R5-2(2145mil,4534.528mil) on Top Layer And Track (2131.22mil,4497.126mil)(2131.22mil,4512.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2153.155mil|Location2.X=2164.405mil|Location1.Y=4513.155mil|Location2.Y=4524.405mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2153.155mil|Location2.X=2164.405mil|Location1.Y=4513.155mil|Location2.Y=4524.405mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.937mil &lt; 10mil) Between Pad R5-2(2145mil,4534.528mil) on Top Layer And Track (2158.78mil,4497.126mil)(2158.78mil,4512.874mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [3.937mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDN1AP50G45DRJEMDFROMDK4B4NLUCBKJMJKP5H2GTIHA0P4PJNHVM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.04mil|Location2.X=1164.29mil|Location1.Y=4788.698mil|Location2.Y=4799.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1153.04mil|Location2.X=1164.29mil|Location1.Y=4788.698mil|Location2.Y=4799.948mil|Absolute=True">Silk To Silk Clearance Constraint: (8.669mil &lt; 10mil) Between Text "CANH" (1166mil,4761mil) on Top Overlay And Track (1150.394mil,3949.095mil)(1150.394mil,4905mil) on Top Overlay Silk Text to Silk Clearance [8.669mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2336.693mil|Location2.X=2347.943mil|Location1.Y=4330.362mil|Location2.Y=4341.612mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2336.693mil|Location2.X=2347.943mil|Location1.Y=4330.362mil|Location2.Y=4341.612mil|Absolute=True">Silk To Silk Clearance Constraint: (6.702mil &lt; 10mil) Between Text "INT" (2236mil,4296mil) on Top Overlay And Track (2349.606mil,3949.095mil)(2349.606mil,4960.905mil) on Top Overlay Silk Text to Silk Clearance [6.702mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2336.687mil|Location2.X=2347.937mil|Location1.Y=4587.039mil|Location2.Y=4598.289mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2336.687mil|Location2.X=2347.937mil|Location1.Y=4587.039mil|Location2.Y=4598.289mil|Absolute=True">Silk To Silk Clearance Constraint: (6.715mil &lt; 10mil) Between Text "MISO
+" (2190mil,4580mil) on Top Overlay And Track (2349.606mil,3949.095mil)(2349.606mil,4960.905mil) on Top Overlay Silk Text to Silk Clearance [6.715mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.355mil|Location2.X=2349.605mil|Location1.Y=4510.362mil|Location2.Y=4521.612mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.355mil|Location2.X=2349.605mil|Location1.Y=4510.362mil|Location2.Y=4521.612mil|Absolute=True">Silk To Silk Clearance Constraint: (3.379mil &lt; 10mil) Between Text "MOSI" (2206mil,4476mil) on Top Overlay And Track (2349.606mil,3949.095mil)(2349.606mil,4960.905mil) on Top Overlay Silk Text to Silk Clearance [3.379mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJ1TC3B3AWPB5KONGZDI1DT5FNNZHPJHA5TV51JPSNYFHTL30FPL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1708.508mil|Location2.X=1732.097mil|Location1.Y=4473.508mil|Location2.Y=4507.707mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\andre\OneDrive\Documents\GitHub\UT22_CAN_Breakout\RearControllerRev2\CAN_Module_Breakout\CAN_Module.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1708.508mil|Location2.X=1732.097mil|Location1.Y=4473.508mil|Location2.Y=4507.707mil|Absolute=True">Net Antennae: Track (1658.74mil,4482.008mil)(1717.008mil,4482.008mil) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
